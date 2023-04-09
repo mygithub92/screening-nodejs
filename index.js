@@ -4,8 +4,6 @@ const fromPhoneNumber = process.env.FROM_PHONE_NUMBER;
 const client = require("twilio")(accountSid, authToken);
 
 exports.handler = async (event) => {
-  console.log("----------------------------------------");
-  console.log(event);
   let statusCode = 200;
   const headers = {
     "Content-Type": "application/json",
@@ -27,7 +25,7 @@ exports.handler = async (event) => {
           message = `Hi ${element.name}, your COVID ${element.test.method} has returned a POSITIVE result on ${datestring}.\r\nPlease isolate away from others right away and a member of the Health & Safety Team will be in contact right away.`;
         }
         if (element.test.result === "Negative") {
-          message = `Hi ${element.name}, your COVID ${element.test.method} has returned a NEGATIVE result on ${datestring}.\r\nPlease see a COVID PA at the entrances for a bracelet.`;
+          message = `Hi ${element.name}, your COVID ${element.test.method} has returned a NEGATIVE result on ${datestring}.`;
         }
       }
       console.log(message);
